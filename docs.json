@@ -70,10 +70,10 @@
                 "group": "Good to know",
                 "icon": "lightbulb",
                 "pages": [
-                  "trading/overview",
                   "trading/dex-spoofing"
                 ]
               },
+              "trading/fees",
               {
                 "group": "Single / Multi",
                 "icon": "bolt",
@@ -181,7 +181,6 @@
               "wallets/create",
               "wallets/balance",
               "wallets/init",
-              "wallets/token-info",
               {
                 "group": "Holdings",
                 "icon": "coins",
@@ -216,6 +215,7 @@
             "group": "Utilities",
             "pages": [
               "utilities/close-accounts",
+              "utilities/token-info",
               "utilities/burn",
               "utilities/health"
             ]
