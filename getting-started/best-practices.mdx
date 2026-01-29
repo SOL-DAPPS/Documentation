@@ -3,3 +3,244 @@ title: "Best Practices"
 description: "Optimize your integration for lowest latency and best performance"
 icon: "star"
 ---
+
+<Frame>
+  <img src="/images/best-practices-banner.png" alt="Best Practices for Launchpad Trade API" />
+</Frame>
+
+Follow these recommendations to get the fastest execution times from the Launchpad Trade API.
+
+---
+
+## Run from Optimal Regions
+
+Network latency between your server and our API directly impacts your trade execution speed. Running your scripts from a server **physically close** to our infrastructure reduces round-trip time and gives you faster confirmations.
+
+Deploy your trading scripts on servers located in one of our supported regions.
+
+<Tabs>
+  <Tab title="Europe">
+    | City | Code | Status |
+    |------|------|--------|
+    | **Amsterdam** | `ams` | ⭐ Recommended |
+    | Frankfurt | `fra` | ✅ Available |
+  </Tab>
+  <Tab title="North America">
+    | City | Code | Status |
+    |------|------|--------|
+    | New York | `ewr` | ✅ Available |
+    | Los Angeles | `lax` | ✅ Available |
+  </Tab>
+  <Tab title="Asia">
+    | City | Code | Status |
+    |------|------|--------|
+    | Tokyo | `nrt` | ✅ Available |
+    | Singapore | `sin` | ✅ Available |
+  </Tab>
+</Tabs>
+
+<Tip>
+Use a VPS or cloud server (AWS, DigitalOcean, Hetzner) in **Amsterdam** for optimal performance.
+</Tip>
+
+---
+
+## Keep Connections Alive
+
+Maintain persistent SSL/TLS connections between requests. Opening a new connection for each request adds significant latency due to the TLS handshake.
+
+<Warning>
+Creating a new HTTPS connection for every request can add **100-300ms** of latency each time.
+</Warning>
+
+Add this setup code **once** at the beginning of your script. All subsequent requests will automatically reuse the same connection:
+
+<CodeGroup>
+```rust Rust
+use reqwest::Client;
+use std::time::Duration;
+
+// Add this once at the start of your application
+lazy_static! {
+    static ref CLIENT: Client = Client::builder()
+        .pool_idle_timeout(Duration::from_secs(60))
+        .pool_max_idle_per_host(10)
+        .build()
+        .unwrap();
+}
+
+// Then use CLIENT for all your requests - connection stays alive automatically
+// CLIENT.post("https://api.launchpad.trade/buy")...
+```
+
+```typescript TypeScript
+import axios from 'axios';
+import https from 'https';
+
+// Add this once at the start of your script
+const client = axios.create({
+  baseURL: 'https://api.launchpad.trade',
+  headers: { 'X-API-Key': process.env.API_KEY },
+  httpsAgent: new https.Agent({ 
+    keepAlive: true,
+    keepAliveMsecs: 60000
+  })
+});
+
+// Then use 'client' for all your requests - connection stays alive automatically
+// client.post('/buy', payload)...
+```
+
+```go Go
+package main
+
+import (
+    "net/http"
+    "time"
+)
+
+// Add this once at package level
+var client = &http.Client{
+    Transport: &http.Transport{
+        MaxIdleConns:        10,
+        MaxIdleConnsPerHost: 10,
+        IdleConnTimeout:     60 * time.Second,
+        DisableKeepAlives:   false,
+    },
+}
+
+// Then use 'client' for all your requests - connection stays alive automatically
+// client.Do(req)...
+```
+
+```python Python
+import requests
+import os
+
+# Add this once at the start of your script
+session = requests.Session()
+session.headers.update({
+    'X-API-Key': os.environ['API_KEY'],
+    'Content-Type': 'application/json'
+})
+
+# Then use 'session' for all your requests - connection stays alive automatically
+# session.post('https://api.launchpad.trade/buy', json=payload)...
+```
+</CodeGroup>
+
+<Check>
+Once configured, every request through this client automatically benefits from persistent connections — no extra code needed.
+</Check>
+
+---
+
+## Initialize Your Wallets
+
+<Warning>
+**Critical for first-time usage.** Skip this step and your first transaction will have added latency.
+</Warning>
+
+Before making your first trade with a wallet, call the `/wallets/init` endpoint. This prepares your wallet for optimized transaction processing.
+
+### Why Initialize?
+
+When you initialize a wallet, Launchpad Trade pre-allocates resources on the Solana network to speed up your transactions. Without initialization, this allocation happens during your first trade, adding latency.
+
+### Requirements
+
+- Minimum **0.01 SOL** in the wallet
+- This SOL is **not consumed** by Launchpad Trade — it's used as a temporary deposit for Solana network operations and returned after completion
+
+### How to Initialize
+
+<CodeGroup>
+```bash cURL
+curl -X POST https://api.launchpad.trade/wallets/init \
+  -H "X-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "wallets": ["WALLET_PRIVATE_KEY_1", "WALLET_PRIVATE_KEY_2"]
+  }'
+```
+
+```rust Rust
+let response = client
+    .post("https://api.launchpad.trade/wallets/init")
+    .header("X-API-Key", api_key)
+    .json(&json!({
+        "wallets": vec![wallet_key_1, wallet_key_2]
+    }))
+    .send()
+    .await?;
+```
+
+```typescript TypeScript
+await client.post('/wallets/init', {
+  wallets: [walletKey1, walletKey2]
+});
+```
+
+```go Go
+payload := map[string]interface{}{
+    "wallets": []string{walletKey1, walletKey2},
+}
+req, _ := http.NewRequest("POST", "https://api.launchpad.trade/wallets/init", toJSON(payload))
+req.Header.Set("X-API-Key", apiKey)
+client.Do(req)
+```
+
+```python Python
+session.post('https://api.launchpad.trade/wallets/init', json={
+    'wallets': [wallet_key_1, wallet_key_2]
+})
+```
+</CodeGroup>
+
+<Check>
+Once initialized, all subsequent trades from that wallet execute at optimal speed.
+</Check>
+
+### Region-Specific Initialization
+
+<Warning>
+Wallet initialization is **region-specific**. If you change regions, you must re-initialize your wallets.
+</Warning>
+
+Our load balancer automatically routes your requests to the closest, most optimal server. When you initialize a wallet, it's prepared for that specific region.
+
+**If you change your server location or IP address:**
+1. The load balancer may assign you to a different region
+2. Your wallets won't be initialized for this new region
+3. Your first transaction will have added latency
+
+**To avoid this:**
+- Re-initialize your wallets after changing your server location
+- Check your current region using the `/health` endpoint
+
+```json
+// Response from /health shows your assigned region
+{
+  "status": "success",
+  "data": {
+    "region": "ams"  // Your current region
+  }
+}
+```
+
+<Tip>
+If you always run from the same server, you only need to initialize once. Re-initialization is only needed when switching locations.
+</Tip>
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Start Trading" icon="chart-line" href="/trading/overview">
+    Execute your first buy or sell
+  </Card>
+  <Card title="Error Handling" icon="triangle-exclamation" href="/support/error-codes">
+    Handle errors gracefully
+  </Card>
+</CardGroup>
