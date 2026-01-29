@@ -1,5 +1,101 @@
 ---
 title: "Fees & Priority"
-description: "Understand transaction fees, priority modes, and slippage settings"
+description: "Configure transaction priority and slippage for your trades. Choose between FAST and ULTRA modes."
 icon: "gauge"
 ---
+
+Control how fast your transactions are processed on the Solana network.
+
+---
+
+## Priority Fee
+
+Priority fee determines how quickly your transaction gets processed by validators. Higher fees mean faster execution.
+
+| Mode | Cost | Best for |
+|------|------|----------|
+| **FAST** | 0.0002 SOL | Most use cases. Already faster than other platforms |
+| **ULTRA** | 0.002 SOL | Sniping, arbitrage, or congested network |
+
+<Check>
+**FAST is the default.** Already faster than most trading platforms.
+</Check>
+
+---
+
+## When to Use ULTRA
+
+ULTRA mode is recommended when:
+
+- **Sniping tokens**: You need to be among the first buyers
+- **Arbitrage**: Speed is critical for profit
+- **Network congestion**: Solana is overloaded and transactions are slow
+
+<Tip>
+Only switch to ULTRA when milliseconds matter.
+</Tip>
+
+---
+
+## Configuration
+
+<ParamField body="priorityFee.mode" type="string" default="FAST">
+  Transaction priority level. Options:
+  
+  - `FAST`: 0.0002 SOL per transaction (default)
+  - `ULTRA`: 0.002 SOL per transaction
+</ParamField>
+
+### Example
+
+```json
+{
+  "privateKeys": ["WALLET_PRIVATE_KEY"],
+  "tokenAddress": "TOKEN_ADDRESS",
+  "amount": {
+    "type": "SOL",
+    "value": 0.5
+  },
+  "priorityFee": {
+    "mode": "FAST"  // or "ULTRA"
+  },
+  "slippage": 10
+}
+```
+
+---
+
+## Slippage
+
+{/* TODO: Confirm if slippage parameter exists */}
+
+Slippage controls how much price movement you accept during a swap. A higher slippage tolerance means your transaction is more likely to succeed, but you may receive fewer tokens.
+
+<ParamField body="slippage" type="number" default="10">
+  Maximum acceptable slippage percentage. Range: 1-100.
+</ParamField>
+
+### Example
+
+```json
+{
+  "slippage": 15  // Accept up to 15% price movement
+}
+```
+
+<Warning>
+Setting slippage too low may cause transactions to fail. Setting it too high may result in fewer tokens received.
+</Warning>
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Buy Tokens" icon="arrow-up" href="/trading/single-multi/buy">
+    Execute buy orders
+  </Card>
+  <Card title="DEX Spoofing" icon="eye-slash" href="/trading/dex-spoofing">
+    Hide your transaction origins
+  </Card>
+</CardGroup>
