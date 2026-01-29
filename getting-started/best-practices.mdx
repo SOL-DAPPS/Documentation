@@ -138,14 +138,14 @@ Once configured, every request through this client automatically benefits from p
 ## Initialize Your Wallets
 
 <Warning>
-**Critical for first-time usage.** Skip this step and your first transaction will have added latency.
+**Required before the first API trade.** Each wallet must be initialized once before its first trading transaction through the API.
 </Warning>
 
-Before making your first trade with a wallet, call the `/wallets/init` endpoint. This prepares your wallet for optimized transaction processing.
+Call the `/wallets/init` endpoint for **each wallet** you plan to use for trading (buy, sell, bundle, etc.) via the Launchpad Trade API.
 
 ### Why Initialize?
 
-When you initialize a wallet, Launchpad Trade pre-allocates resources on the Solana network to speed up your transactions. Without initialization, this allocation happens during your first trade, adding latency.
+When you initialize a wallet, Launchpad Trade pre-allocates resources on the Solana network to speed up your transactions. Without initialization, this allocation happens during your first trade, adding **significant latency**.
 
 ### Requirements
 
