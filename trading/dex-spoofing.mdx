@@ -44,19 +44,113 @@ Your wallet address is still visible, but it looks like you're using one of thes
 
 ---
 
-## How to Disable
+## Configuration
 
-DEX Spoofing is enabled by default. To disable it, set `dex_spoofing` to `false` in your request:
+DEX Spoofing is configured via the `dex_spoofing` parameter in your request.
+
+### Example Request
 
 ```json
 {
-  "dex_spoofing": false
+  "privateKeys": ["WALLET_PRIVATE_KEY"],
+  "tokenAddress": "TOKEN_ADDRESS",
+  "amount": {
+    "type": "SOL",
+    "value": 0.7
+  },
+  "priorityFee": {
+    "mode": "FAST"
+  },
+  "dex_spoofing": {
+    "name": "RANDOM",
+    "mode": "NORMAL"
+  }
 }
 ```
 
+---
+
+## Parameters
+
+<ParamField body="dex_spoofing.name" type="string" default="RANDOM">
+  Which platform logo to display. Options:
+  
+  - `RANDOM`: Randomly selects from the list below (or none)
+  - `PHOTON`, `AXIOM`, `BULLX`, `TROJAN`, `BONKBOT`, `GMGN`, `PADRE`, `PEPEBOOST`, `MAESTRO`, `PHANTOM`: Display a specific logo
+  - `FALSE`: Disable DEX Spoofing
+</ParamField>
+
+<ParamField body="dex_spoofing.mode" type="string" default="NORMAL">
+  Spoofing mode. Options:
+  
+  - `NORMAL`: Standard spoofing (default)
+  - `BYPASS`: Enhanced compatibility with GMGN. Costs **0.001 SOL per transaction**
+</ParamField>
+
 <Warning>
-Disabling DEX Spoofing reveals that you're using Launchpad Trade. Keep it enabled unless you have a specific reason.
+`BYPASS` mode works better on GMGN but adds 0.001 SOL to each transaction. Only use it if you specifically need GMGN compatibility.
 </Warning>
+
+---
+
+## Examples
+
+<Tabs>
+  <Tab title="Random (default)">
+    Randomly selects a logo from the supported list, or displays none.
+    
+    ```json
+    {
+      "dex_spoofing": {
+        "name": "RANDOM",
+        "mode": "NORMAL"
+      }
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Specific logo">
+    Always display a specific logo.
+    
+    ```json
+    {
+      "dex_spoofing": {
+        "name": "PHOTON",  // or "AXIOM", "BULLX", "TROJAN", "BONKBOT", "GMGN", "PADRE", "PEPEBOOST", "MAESTRO", "PHANTOM"
+        "mode": "NORMAL"
+      }
+    }
+    ```
+  </Tab>
+  
+  <Tab title="GMGN Bypass">
+    Use BYPASS mode for better GMGN compatibility.
+    
+    ```json
+    {
+      "dex_spoofing": {
+        "name": "RANDOM",
+        "mode": "BYPASS"
+      }
+    }
+    ```
+    
+    <Note>
+    Adds 0.001 SOL per transaction.
+    </Note>
+  </Tab>
+  
+  <Tab title="Disabled">
+    Disable DEX Spoofing entirely.
+    
+    ```json
+    {
+      "dex_spoofing": {
+        "name": "FALSE"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
