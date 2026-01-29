@@ -1,0 +1,34 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.cursor/
+.vscode/
+*.swp
+*.swo
+
+# Dev Container
+.devcontainer/
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose*.yml
+.docker/
+
+# Dependencies
+node_modules/
+bun.lockb
+package-lock.json
+yarn.lock
+
+# Mintlify local
+.mintlify/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log

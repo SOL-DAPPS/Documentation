@@ -1,0 +1,69 @@
+---
+title: "Authentication"
+description: "How to authenticate with the Launchpad Trade API"
+icon: "key"
+---
+
+All API requests require authentication using your API key.
+
+## API Key
+
+Include your API key in the `X-API-Key` header of every request:
+
+```bash
+curl -X POST https://api.launchpad.trade/endpoint \
+  -H "X-API-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"param": "value"}'
+```
+
+<Tip>
+Get your API key from the [Dashboard](https://app.launchpad.trade).
+</Tip>
+
+---
+
+## Base URL
+
+```text
+https://api.launchpad.trade
+```
+
+---
+
+## Security Best Practices
+
+<AccordionGroup>
+  <Accordion title="Never expose your API key in client-side code" icon="eye-slash">
+    Your API key should only be used in server-side code. Never include it in frontend JavaScript, mobile apps, or any code that runs on the client.
+  </Accordion>
+  
+  <Accordion title="Use environment variables" icon="lock">
+    Store your API key in environment variables, not in your code.
+    
+    ```bash .env
+    LAUNCHPAD_API_KEY=your_api_key_here
+    ```
+
+    ```typescript
+    const apiKey = process.env.LAUNCHPAD_API_KEY;
+    ```
+  </Accordion>
+  
+  <Accordion title="Rotate your key if compromised" icon="rotate">
+    If you suspect your API key has been exposed, generate a new one immediately from the Dashboard. The old key will be invalidated.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Best Practices" icon="star" href="/getting-started/best-practices">
+    Optimize for lowest latency and best performance
+  </Card>
+  <Card title="Error Codes" icon="triangle-exclamation" href="/support/error-codes">
+    Handle errors gracefully
+  </Card>
+</CardGroup>

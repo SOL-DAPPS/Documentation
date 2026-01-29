@@ -1,0 +1,289 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Launchpad Trade",
+  "description": "The fastest Solana Trading API. Create, trade, and manage tokens with speed, security, and efficiency.",
+  
+  "colors": {
+    "primary": "#7C86FF",
+    "light": "#FAFAFA",
+    "dark": "#0E0B16"
+  },
+
+  "favicon": "/favicon.svg",
+  
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://launchpad.trade",
+    "height": 40
+  },
+
+  "navbar": {
+    "links": [
+      {
+        "label": "Blog",
+        "href": "https://launchpad.trade/blog"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.launchpad.trade"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://app.launchpad.trade"
+    }
+  },
+
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "index",
+              "getting-started/quick-start",
+              "getting-started/authentication",
+              "getting-started/best-practices"
+            ]
+          },
+          {
+            "group": "Concepts",
+            "pages": [
+              "concepts/security",
+              "concepts/pricing",
+              "concepts/sdk"
+            ]
+          },
+          {
+            "group": "Trading",
+            "pages": [
+              {
+                "group": "Good to know",
+                "icon": "lightbulb",
+                "pages": [
+                  "trading/overview",
+                  "trading/dex-spoofing"
+                ]
+              },
+              {
+                "group": "Single / Multi",
+                "icon": "bolt",
+                "pages": [
+                  "trading/single-multi/overview",
+                  "trading/single-multi/buy",
+                  "trading/single-multi/sell"
+                ]
+              },
+              {
+                "group": "Delayed",
+                "icon": "clock",
+                "pages": [
+                  "trading/delayed/overview",
+                  "trading/delayed/buy",
+                  "trading/delayed/sell"
+                ]
+              },
+              {
+                "group": "Bundle",
+                "icon": "cubes",
+                "pages": [
+                  "trading/bundle/overview",
+                  "trading/bundle/buy",
+                  "trading/bundle/sell"
+                ]
+              },
+              {
+                "group": "Transfers",
+                "icon": "right-left",
+                "pages": [
+                  "trading/transfers/overview",
+                  "trading/transfers/buy",
+                  "trading/transfers/sell"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Launch",
+            "pages": [
+              {
+                "group": "Create Token",
+                "icon": "plus",
+                "pages": [
+                  "launch/create-token/overview",
+                  "launch/create-token/pumpfun"
+                ]
+              },
+              {
+                "group": "Sniper",
+                "icon": "crosshairs",
+                "pages": [
+                  "launch/sniper/overview",
+                  "launch/sniper/pumpfun"
+                ]
+              },
+              {
+                "group": "Bundle",
+                "icon": "layer-group",
+                "pages": [
+                  "launch/bundle/overview",
+                  "launch/bundle/pumpfun"
+                ]
+              },
+              {
+                "group": "PumpFun",
+                "icon": "fire",
+                "pages": [
+                  "launch/pumpfun/claim",
+                  "launch/pumpfun/update",
+                  "launch/pumpfun/transfer-authority",
+                  "launch/pumpfun/revoke"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Growth Tools",
+            "pages": [
+              {
+                "group": "Volume",
+                "icon": "chart-line",
+                "pages": [
+                  "growth-tools/volume/overview",
+                  "growth-tools/volume/start",
+                  "growth-tools/volume/status",
+                  "growth-tools/volume/stop"
+                ]
+              },
+              {
+                "group": "Holders",
+                "icon": "users",
+                "pages": [
+                  "growth-tools/holders/overview",
+                  "growth-tools/holders/generate",
+                  "growth-tools/holders/sell"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Wallets",
+            "pages": [
+              "wallets/create",
+              "wallets/balance",
+              "wallets/init",
+              "wallets/token-info",
+              {
+                "group": "Holdings",
+                "icon": "coins",
+                "pages": [
+                  "wallets/holdings/overview",
+                  "wallets/holdings/start",
+                  "wallets/holdings/status",
+                  "wallets/holdings/estimate"
+                ]
+              },
+              {
+                "group": "Warmer",
+                "icon": "fire-flame-curved",
+                "pages": [
+                  "wallets/warmer/overview",
+                  "wallets/warmer/start",
+                  "wallets/warmer/status",
+                  "wallets/warmer/estimate"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Funding",
+            "pages": [
+              "funding/privacy",
+              "funding/distribute",
+              "funding/withdraw"
+            ]
+          },
+          {
+            "group": "Utilities",
+            "pages": [
+              "utilities/close-accounts",
+              "utilities/burn",
+              "utilities/health"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Reference",
+            "pages": [
+              "support/error-codes",
+              "support/rate-limits",
+              "support/changelog"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "support/faq",
+              "support/status",
+              "support/contact"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Discord",
+          "icon": "discord",
+          "href": "https://discord.gg/launchpad-trade"
+        },
+        {
+          "anchor": "Twitter",
+          "icon": "x-twitter",
+          "href": "https://x.com/launchpad_trade"
+        }
+      ]
+    }
+  },
+
+  "footer": {
+    "socials": {
+      "x": "https://x.com/launchpad_trade",
+      "discord": "https://discord.gg/launchpad-trade",
+      "telegram": "https://t.me/launchpad_trade",
+      "github": "https://github.com/launchpad-trade",
+      "youtube": "https://www.youtube.com/@launchpad-trade"
+    }
+  },
+
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "cursor"]
+  },
+
+  "api": {
+    "baseUrl": "https://api.launchpad.trade",
+    "auth": {
+      "method": "key",
+      "name": "X-API-Key"
+    }
+  },
+
+  "seo": {
+    "indexHiddenPages": false
+  },
+
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
+  }
+}
