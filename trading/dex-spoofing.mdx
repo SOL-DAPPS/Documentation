@@ -1,4 +1,74 @@
 ---
 title: "DEX Spoofing"
-description: "Mask the origin of your transactions on blockchain trackers"
+description: "Make your trades appear as if made from Photon, Axiom, BullX and other popular trading tools. Works on Padre, BullX, GMGN and more."
+icon: "eye-slash"
 ---
+
+<Check>
+**Enabled by default.** Your trades are automatically spoofed.
+</Check>
+
+---
+
+## What is DEX Spoofing?
+
+When you look at a token's transaction history on platforms like GMGN, Padre, or BullX, you see a list of wallets that bought or sold. Next to each wallet, these platforms often display a logo showing which trading tool was used — Photon, Axiom, BonkBot, etc.
+
+DEX Spoofing makes your Launchpad Trade transactions appear as if they came from one of these popular tools. Your wallet blends in with thousands of other traders, and no one can tell you're using Launchpad Trade.
+
+---
+
+## Where It Works
+
+Your spoofed trades are visible on **Padre**, **BullX**, **GMGN**, and other Solana trading platforms.
+
+<Frame caption="Example on Padre: the Axiom logo appears next to the wallet address">
+  <img src="/images/dex-spoofing-example.png" alt="DEX Spoofing example showing Axiom logo on Padre trading platform" />
+</Frame>
+
+---
+
+## Supported Logos
+
+Your trades can appear as if made from:
+
+**Photon** · **Axiom** · **BullX** · **Trojan** · **BonkBot** · **GMGN** · **Padre** · **PepeBoost** · **Maestro** · **Phantom**
+
+<Tip>
+Your wallet address is still visible, but it looks like you're using one of these popular trading tools instead of Launchpad Trade.
+</Tip>
+
+---
+
+## How to Disable
+
+DEX Spoofing is enabled by default. To disable it, set `dex_spoofing` to `false` in your request:
+
+```json
+{
+  "dex_spoofing": false
+}
+```
+
+<Warning>
+Disabling DEX Spoofing reveals that you're using Launchpad Trade. Keep it enabled unless you have a specific reason.
+</Warning>
+
+---
+
+## Supported Endpoints
+
+DEX Spoofing works on all endpoints that perform swaps (buy or sell).
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Buy Tokens" icon="arrow-up" href="/trading/single-multi/buy">
+    Execute trades with DEX Spoofing
+  </Card>
+  <Card title="Sell Tokens" icon="arrow-down" href="/trading/single-multi/sell">
+    Sell while staying discreet
+  </Card>
+</CardGroup>
