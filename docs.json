@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Launchpad.Trade",
+  "name": "Launchpad Trade",
   "description": "The fastest Solana Trading API. Create, trade, and manage tokens with speed, security, and efficiency.",
   
   "colors": {
@@ -275,10 +275,15 @@
   },
 
   "api": {
-    "baseUrl": "https://api.launchpad.trade",
-    "auth": {
-      "method": "key",
-      "name": "X-API-Key"
+    "mdx": {
+      "server": "https://api.launchpad.trade",
+      "auth": {
+        "method": "key",
+        "name": "X-API-Key"
+      }
+    },
+    "playground": {
+      "display": "interactive"
     }
   },
 
