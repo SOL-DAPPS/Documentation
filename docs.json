@@ -1,7 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
-  "appearance": "dark",
+  "theme": "mint",
   "name": "Launchpad Trade",
   "description": "The fastest Solana Trading API. Create, trade, and manage tokens with speed, security, and efficiency.",
   
@@ -18,6 +17,10 @@
     "dark": "/logo/dark.svg",
     "href": "https://launchpad.trade",
     "height": 40
+  },
+
+  "thumbnails": {
+    "appearance": "dark"
   },
 
   "navbar": {
