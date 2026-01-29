@@ -3,3 +3,116 @@ title: "Security"
 description: "How Launchpad Trade keeps your assets and data secure"
 icon: "shield"
 ---
+
+Launchpad Trade is built with security as a core principle. Your private keys are never stored, making our platform secure by design.
+
+---
+
+## Security by Design
+
+<Check>
+**Your private keys are never stored.** They're transmitted, used to sign transactions, and immediately discarded.
+</Check>
+
+This architecture means:
+
+- **No database of wallets to hack** — we don't have your keys
+- **A stolen API key is useless** — attackers can't do anything without your private keys
+- **No single point of failure** — your assets remain under your control
+
+<Note>
+Even if someone gains access to your Launchpad Trade account or API key, they cannot access your funds without your private keys.
+</Note>
+
+---
+
+## How Your Data is Protected
+
+| Data | Storage | Protection |
+|------|---------|------------|
+| **Private keys** | Never stored | Transmitted via TLS, used once, discarded |
+| **Email** | Encrypted database | KMS/HMS encryption |
+| **API key** | Encrypted database | KMS/HMS encryption |
+| **Transaction logs** | Not stored | No transaction history retained |
+
+### Encryption Standards
+
+Your account data (email, API key) is stored in an encrypted database protected by:
+
+- **KMS** (Key Management Service) — secure key storage and rotation
+- **HMS** (Hardware Security Module) — hardware-level encryption
+
+---
+
+## Transaction Flow
+
+When you make a trade through the API, here's what happens:
+
+```
+You send request with private key
+         ↓
+    [TLS Encrypted]
+         ↓
+Launchpad Trade receives request
+         ↓
+Transaction is signed
+         ↓
+Transaction is broadcast to Solana
+         ↓
+Private key is immediately discarded
+         ↓
+Response returned to you
+```
+
+<Warning>
+Your private key exists in our system only for the milliseconds needed to sign the transaction. It is never written to disk or logged.
+</Warning>
+
+---
+
+## Infrastructure
+
+Your requests are protected by enterprise-grade security:
+
+- **DDoS protection** — automatic mitigation of attacks
+- **TLS encryption** — all traffic encrypted in transit
+- **Private network database** — isolated from public internet
+- **Global edge network** — low-latency, distributed infrastructure
+
+---
+
+## Your Responsibilities
+
+While we handle infrastructure security, you're responsible for:
+
+<AccordionGroup>
+  <Accordion title="Secure your private keys" icon="key">
+    Your private keys are the master access to your wallets. Keep them:
+    - In secure, encrypted storage
+    - Never in client-side code or public repositories
+    - Backed up in a safe location
+  </Accordion>
+  
+  <Accordion title="Protect your API key" icon="lock">
+    Your API key authenticates your requests. Store it in environment variables and never expose it publicly.
+    
+    See [Authentication](/getting-started/authentication) for details.
+  </Accordion>
+  
+  <Accordion title="Use secure servers" icon="server">
+    Run your trading scripts on secure, trusted servers. Follow our [Best Practices](/getting-started/best-practices) for optimal setup.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Questions?
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/getting-started/authentication">
+    Learn about API key management
+  </Card>
+  <Card title="Contact Support" icon="message" href="/support/contact">
+    Have security concerns? Reach out
+  </Card>
+</CardGroup>
