@@ -16,6 +16,7 @@ Priority fee determines how quickly your transaction gets processed by validator
 |------|------|----------|
 | **FAST** | 0.0002 SOL | Most use cases. Already faster than other platforms |
 | **ULTRA** | 0.002 SOL | Sniping, arbitrage, or congested network |
+| **Custom** | You decide | Full control over priority fee. Set your own value via `customValue` |
 
 <Check>
 **FAST is the default.** Already faster than most trading platforms.
@@ -46,7 +47,124 @@ Only switch to ULTRA when milliseconds matter.
   - `ULTRA`: 0.002 SOL per transaction
 </ParamField>
 
-### Example
+<ParamField body="priorityFee.customValue" type="number | null" default="null">
+  Set a custom priority fee in SOL. When set, overrides the mode value.
+  
+  Minimum recommended: **0.0002 SOL**
+</ParamField>
+
+### Examples
+
+<Tabs>
+  <Tab title="FAST (default)">
+    ```json
+    {
+      "priorityFee": {
+        "mode": "FAST",
+        "customValue": null
+      }
+    }
+    ```
+  </Tab>
+  
+  <Tab title="ULTRA">
+    ```json
+    {
+      "priorityFee": {
+        "mode": "ULTRA",
+        "customValue": null
+      }
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Custom">
+    Set your own priority fee value.
+    
+    ```json
+    {
+      "priorityFee": {
+        "mode": "FAST",
+        "customValue": 0.0005
+      }
+    }
+    ```
+    
+    <Note>
+    When `customValue` is set, it overrides the mode. Minimum recommended: 0.0002 SOL.
+    </Note>
+  </Tab>
+</Tabs>
+
+---
+
+## Slippage
+
+Slippage controls how much price movement you accept during a swap. A higher slippage tolerance means your transaction is more likely to succeed, but you may receive fewer tokens.
+
+### Modes
+
+You can specify slippage in two formats:
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **PERCENT** | Percentage of price movement | 10 = 10% |
+| **BPS** | Basis points (1/100 of a percent) | 1000 = 10% |
+
+<Tip>
+Use **PERCENT** for simplicity. Use **BPS** for precise control (1 bps = 0.01%).
+</Tip>
+
+### Parameters
+
+<ParamField body="slippage.type" type="string" default="PERCENT">
+  Slippage unit. Options:
+  
+  - `PERCENT`: Value represents a percentage (e.g., 10 = 10%)
+  - `BPS`: Value represents basis points (e.g., 1000 = 10%)
+</ParamField>
+
+<ParamField body="slippage.value" type="number" default="10">
+  Slippage tolerance value. Interpreted based on the type.
+</ParamField>
+
+### Examples
+
+<Tabs>
+  <Tab title="Percentage">
+    Accept up to 10% price movement.
+    
+    ```json
+    {
+      "slippage": {
+        "type": "PERCENT",
+        "value": 10
+      }
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Basis Points">
+    Accept up to 10% price movement (1000 bps).
+    
+    ```json
+    {
+      "slippage": {
+        "type": "BPS",
+        "value": 1000
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Warning>
+Setting slippage too low may cause transactions to fail. Setting it too high may result in fewer tokens received.
+</Warning>
+
+---
+
+## Full Example
 
 ```json
 {
@@ -56,43 +174,23 @@ Only switch to ULTRA when milliseconds matter.
     "type": "SOL",
     "value": 0.5
   },
-  "priorityFee": {
-    "mode": "FAST"  // or "ULTRA"
+  "slippage": {
+    "type": "PERCENT",
+    "value": 10
   },
-  "slippage": 10
+  "priorityFee": {
+    "mode": "FAST",
+    "customValue": null
+  }
 }
 ```
-
----
-
-## Slippage
-
-{/* TODO: Confirm if slippage parameter exists */}
-
-Slippage controls how much price movement you accept during a swap. A higher slippage tolerance means your transaction is more likely to succeed, but you may receive fewer tokens.
-
-<ParamField body="slippage" type="number" default="10">
-  Maximum acceptable slippage percentage. Range: 1-100.
-</ParamField>
-
-### Example
-
-```json
-{
-  "slippage": 15  // Accept up to 15% price movement
-}
-```
-
-<Warning>
-Setting slippage too low may cause transactions to fail. Setting it too high may result in fewer tokens received.
-</Warning>
 
 ---
 
 ## What's Next?
 
 <CardGroup cols={2}>
-  <Card title="Buy Tokens" icon="arrow-up" href="/trading/single-multi/buy">
+  <Card title="Buy Tokens" icon="arrow-up" href="/trading/instant/buy">
     Execute buy orders
   </Card>
   <Card title="DEX Spoofing" icon="eye-slash" href="/trading/dex-spoofing">

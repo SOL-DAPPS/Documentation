@@ -58,8 +58,13 @@ DEX Spoofing is configured via the `dex_spoofing` parameter in your request.
     "type": "SOL",
     "value": 0.7
   },
+  "slippage": {
+    "type": "PERCENT",
+    "value": 10
+  },
   "priorityFee": {
-    "mode": "FAST"
+    "mode": "FAST",
+    "customValue": null
   },
   "dex_spoofing": {
     "name": "RANDOM",
@@ -110,16 +115,20 @@ DEX Spoofing is configured via the `dex_spoofing` parameter in your request.
   </Tab>
   
   <Tab title="Specific logo">
-    Always display a specific logo.
+    Always display the same logo.
     
     ```json
     {
       "dex_spoofing": {
-        "name": "PHOTON",  // or "AXIOM", "BULLX", "TROJAN", "BONKBOT", "GMGN", "PADRE", "PEPEBOOST", "MAESTRO", "PHANTOM"
+        "name": "PHOTON",
         "mode": "NORMAL"
       }
     }
     ```
+    
+    <Note>
+    Available logos: `PHOTON`, `AXIOM`, `BULLX`, `TROJAN`, `BONKBOT`, `GMGN`, `PADRE`, `PEPEBOOST`, `MAESTRO`, `PHANTOM`
+    </Note>
   </Tab>
   
   <Tab title="GMGN Bypass">
@@ -163,10 +172,10 @@ DEX Spoofing works on all endpoints that perform swaps (buy or sell).
 ## What's Next?
 
 <CardGroup cols={2}>
-  <Card title="Buy Tokens" icon="arrow-up" href="/trading/single-multi/buy">
+  <Card title="Buy Tokens" icon="arrow-up" href="/trading/instant/buy">
     Execute trades with DEX Spoofing
   </Card>
-  <Card title="Sell Tokens" icon="arrow-down" href="/trading/single-multi/sell">
+  <Card title="Sell Tokens" icon="arrow-down" href="/trading/instant/sell">
     Sell while staying discreet
   </Card>
 </CardGroup>

@@ -1,0 +1,74 @@
+---
+title: "Overview"
+description: "Execute buy or sell orders with one or multiple wallets simultaneously. Organic transactions, maximum speed."
+icon: "circle-info"
+---
+
+Execute trades with one wallet or dozens simultaneously. Each wallet signs its own transaction, making them appear fully organic on-chain.
+
+---
+
+## What is Instant?
+
+A single API request that lets you buy or sell tokens with **one or multiple wallets** at the same time.
+
+- **Single wallet**: Standard trade from one wallet
+- **Multiple wallets**: All wallets execute in the same request, targeting the same block
+
+<Check>
+**Organic transactions.** Each wallet is the sole signer of its transaction. No bundle flags, no bot detection.
+</Check>
+
+---
+
+## Why Multiple Wallets?
+
+When you need to buy or sell with several wallets simultaneously:
+
+<AccordionGroup>
+  <Accordion title="Secure supply on launch" icon="rocket">
+    Buying a token at launch? Execute with multiple wallets in the same block to secure maximum supply before others can snipe you.
+  </Accordion>
+  
+  <Accordion title="Create buying pressure" icon="arrow-trend-up">
+    Multiple simultaneous buys create visible momentum on the chart. Useful for countering a dip or restarting activity.
+  </Accordion>
+  
+  <Accordion title="Distribute holdings" icon="users">
+    Spread your position across multiple wallets for better risk management or to appear as multiple independent holders.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Speed Advantage
+
+Our infrastructure is optimized for **maximum speed**. In internal tests, we've executed **30+ wallets in the same block**.
+
+<Tip>
+All your wallets can trade before the price moves.
+</Tip>
+
+---
+
+## Instant vs Bundle
+
+| | Instant | Bundle |
+|---|---|---|
+| **Transaction type** | Independent (organic) | Atomic (linked) |
+| **On-chain appearance** | Normal trades | Flagged as bundle |
+| **Execution** | Same block (best effort) | All or nothing |
+| **Use case** | Discreet accumulation | Guaranteed execution |
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Buy" icon="arrow-up" href="/trading/instant/buy">
+    Execute buy orders with one or multiple wallets
+  </Card>
+  <Card title="Sell" icon="arrow-down" href="/trading/instant/sell">
+    Sell tokens from one or multiple wallets
+  </Card>
+</CardGroup>

@@ -75,12 +75,12 @@
               },
               "trading/fees",
               {
-                "group": "Single / Multi",
+                "group": "Instant",
                 "icon": "bolt",
                 "pages": [
-                  "trading/single-multi/overview",
-                  "trading/single-multi/buy",
-                  "trading/single-multi/sell"
+                  "trading/instant/overview",
+                  "trading/instant/buy",
+                  "trading/instant/sell"
                 ]
               },
               {
