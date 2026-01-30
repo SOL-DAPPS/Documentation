@@ -1,0 +1,62 @@
+---
+title: "Supported Platforms"
+description: "Launchpads and DEXs supported by Launchpad Trade API. PumpFun, Bonk, Raydium and more coming soon."
+icon: "grid-2"
+---
+
+<Frame>
+  <img src="/images/supported-platforms-banner.png" alt="Launchpad Trade supported platforms: Solana, PumpFun, Bonk, Raydium" />
+</Frame>
+
+Check which launchpads and DEXs you can use with Launchpad Trade API.
+
+---
+
+## Current Support
+
+| Feature | PumpFun | Bonk | Raydium | Other |
+|---------|:-------:|:----:|:-------:|:-----:|
+| **Trading (Swap)** | ✅ | Soon | Soon | Soon |
+| **Token Creation** | ✅ | Soon | Soon | Soon |
+| **Bundle** | ✅ | Soon | Soon | Soon |
+
+---
+
+## How It Works
+
+You don't need to specify the platform in your API requests. Launchpad Trade automatically detects the token type and applies the correct settings.
+
+- **Token creation**: Uses PumpFun
+- **Trading**: Detects the token's platform automatically
+- **Bundle**: Applies the correct wallet limits based on the detected platform
+
+<Tip>
+Just provide the token address. The API handles the rest.
+</Tip>
+
+---
+
+## Coming Soon
+
+We're actively working on supporting more platforms:
+
+- **Bonk** — Token creation and trading
+- **Raydium** — Pool trading
+- **Other platforms** — Stay tuned
+
+<Info>
+Follow our [changelog](/support/changelog) for updates on new platform support.
+</Info>
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Start Trading" icon="bolt" href="/trading/instant/overview">
+    Execute trades on supported platforms
+  </Card>
+  <Card title="Create a Token" icon="plus" href="/launch/create-token/overview">
+    Launch on PumpFun
+  </Card>
+</CardGroup>
