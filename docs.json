@@ -70,10 +70,10 @@
                 "group": "Good to know",
                 "icon": "lightbulb",
                 "pages": [
+                  "trading/priority-slippage",
                   "trading/dex-spoofing"
                 ]
               },
-              "trading/fees",
               {
                 "group": "Instant",
                 "icon": "bolt",

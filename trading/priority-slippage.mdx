@@ -1,8 +1,12 @@
 ---
-title: "Fees & Priority"
-description: "Configure transaction priority and slippage for your trades. Choose between FAST and ULTRA modes."
+title: "Priority & Slippage"
+description: "Configure transaction priority and slippage for your trades. Choose between FAST, ULTRA, and CUSTOM modes."
 icon: "gauge"
 ---
+
+<Frame>
+  <img src="/images/fees-priority-banner.png" alt="Launchpad Trade Priority Fee settings showing Fast, Ultra, and Custom modes" />
+</Frame>
 
 Control how fast your transactions are processed on the Solana network.
 
@@ -16,7 +20,7 @@ Priority fee determines how quickly your transaction gets processed by validator
 |------|------|----------|
 | **FAST** | 0.0002 SOL | Most use cases. Already faster than other platforms |
 | **ULTRA** | 0.002 SOL | Sniping, arbitrage, or congested network |
-| **Custom** | You decide | Full control over priority fee. Set your own value via `customValue` |
+| **CUSTOM** | You decide | Full control. Set `mode: "CUSTOM"` and your value in `customValue` |
 
 <Check>
 **FAST is the default.** Already faster than most trading platforms.
@@ -45,10 +49,11 @@ Only switch to ULTRA when milliseconds matter.
   
   - `FAST`: 0.0002 SOL per transaction (default)
   - `ULTRA`: 0.002 SOL per transaction
+  - `CUSTOM`: Use the value specified in `customValue`
 </ParamField>
 
 <ParamField body="priorityFee.customValue" type="number | null" default="null">
-  Set a custom priority fee in SOL. When set, overrides the mode value.
+  Custom priority fee in SOL. Only used when `mode` is set to `CUSTOM`.
   
   Minimum recommended: **0.0002 SOL**
 </ParamField>
@@ -84,14 +89,14 @@ Only switch to ULTRA when milliseconds matter.
     ```json
     {
       "priorityFee": {
-        "mode": "FAST",
+        "mode": "CUSTOM",
         "customValue": 0.0005
       }
     }
     ```
     
     <Note>
-    When `customValue` is set, it overrides the mode. Minimum recommended: 0.0002 SOL.
+    Minimum recommended: 0.0002 SOL.
     </Note>
   </Tab>
 </Tabs>
