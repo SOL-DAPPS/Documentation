@@ -1,6 +1,127 @@
 ---
 title: "Overview"
-description: "Execute trades with customizable delays between each transaction"
+description: "Execute trades with customizable delays between each transaction. Fixed or random intervals."
 icon: "circle-info"
 ---
 
+Same as Instant, but with a configurable delay between each wallet's transaction. Ideal for making multi-wallet trades appear more natural.
+
+---
+
+## What is Delayed?
+
+Delayed works exactly like [Instant](/trading/instant/overview): you can buy or sell with one or multiple wallets in a single request. The difference is that transactions are spaced out by a delay you define.
+
+<Check>
+**More natural trading pattern.** Transactions don't all hit the same block.
+</Check>
+
+---
+
+## Delay Modes
+
+You can configure the delay in two ways:
+
+| Mode | Description | Example |
+|------|-------------|---------|
+| **Fixed** | Exact interval between each transaction | 100ms between each |
+| **Range** | Random interval within a min/max range | Random between 200-300ms |
+
+<Tip>
+Use **Range** mode for more organic-looking trades. The randomness makes patterns harder to detect.
+</Tip>
+
+---
+
+## How It Works
+
+<Steps>
+  <Step title="You send a request">
+    Include multiple wallets and your delay configuration.
+  </Step>
+  <Step title="First wallet executes">
+    The first transaction is sent immediately.
+  </Step>
+  <Step title="Delay applied">
+    The system waits for your configured delay (fixed or random within range).
+  </Step>
+  <Step title="Next wallet executes">
+    The next transaction is sent. This repeats until all wallets have traded.
+  </Step>
+</Steps>
+
+---
+
+## Configuration
+
+### Fixed Delay
+
+All transactions are spaced by exactly the same interval.
+
+```json
+{
+  "delay": {
+    "type": "FIXED",
+    "value": 100
+  }
+}
+```
+
+<Note>
+Value is in **milliseconds**. 100 = 100ms = 0.1 second between each transaction.
+</Note>
+
+### Range Delay
+
+Each interval is randomly chosen between min and max values.
+
+```json
+{
+  "delay": {
+    "type": "RANGE",
+    "min": 200,
+    "max": 300
+  }
+}
+```
+
+<Note>
+Each transaction will wait a random time between 200ms and 300ms before the next one.
+</Note>
+
+---
+
+## Delayed vs Instant
+
+| | Instant | Delayed |
+|---|---------|---------|
+| **Execution** | All wallets target same block | Wallets execute sequentially with delays |
+| **Speed** | Maximum speed | Configurable pace |
+| **Pattern** | Simultaneous | Spread over time |
+| **Use case** | Speed is priority | Natural-looking trades |
+
+---
+
+## When to Use Delayed
+
+<AccordionGroup>
+  <Accordion title="Organic appearance" icon="leaf">
+    When you want multi-wallet trades to look like independent users trading over time rather than a coordinated action.
+  </Accordion>
+  <Accordion title="Controlled distribution" icon="sliders">
+    When you want to accumulate or sell gradually rather than all at once.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Buy" icon="arrow-up" href="/trading/delayed/buy">
+    Execute delayed buy orders
+  </Card>
+  <Card title="Sell" icon="arrow-down" href="/trading/delayed/sell">
+    Execute delayed sell orders
+  </Card>
+</CardGroup>
